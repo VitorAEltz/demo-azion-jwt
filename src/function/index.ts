@@ -77,7 +77,7 @@ async function serveStaticFile(path: string): Promise<Response> {
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .container { background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); max-width: 500px; width: 90%; text-align: center; }
+        .container { background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); max-width: 600px; width: 90%; text-align: center; }
         h1 { color: #1f2937; margin-bottom: 1rem; }
         p { color: #6b7280; margin-bottom: 2rem; }
         .demo-info { background: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 1rem; margin: 2rem 0; }
@@ -120,7 +120,7 @@ async function serveStaticFile(path: string): Promise<Response> {
             <button class="btn btn-outline" onclick="testLogin()">Test Login</button>
         </div>
         
-        <div id="result" style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-family: monospace; font-size: 0.9rem; text-align: left; display: none;"></div>
+        <div id="result" style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-family: monospace; font-size: 0.9rem; text-align: left; display: none; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;"></div>
     </div>
     
     <script>

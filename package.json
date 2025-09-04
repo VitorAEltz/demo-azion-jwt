@@ -5,6 +5,9 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
+    "build": "azion build --preset typescript",
+    "dev": "azion dev",
+    "start": "azion dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -24,13 +24,13 @@ export default {
   },
   functions: [
     {
-      name: '$FUNCTION_NAME',
+      name: 'azion-jwt-test',
       path: './functions/index.js'
     }
   ],
   applications: [
     {
-      name: '$APPLICATION_NAME',
+      name: 'azion-jwt-test',
       rules: {
         request: [
           {
@@ -51,7 +51,7 @@ export default {
               {
                 type: 'run_function',
                 attributes: {
-                  value: '$FUNCTION_NAME'
+                  value: 'azion-jwt-test'
                 }
               }
             ]
@@ -60,15 +60,15 @@ export default {
       },
       functionsInstances: [
         {
-          name: '$FUNCTION_INSTANCE_NAME',
-          ref: '$FUNCTION_NAME'
+          name: 'azion-jwt-test',
+          ref: 'azion-jwt-test'
         }
       ]
     }
   ],
   workloads: [
     {
-      name: '$WORKLOAD_NAME',
+      name: 'azion-jwt-test',
       active: true,
       infrastructure: 1,
       protocols: {
@@ -81,13 +81,13 @@ export default {
       },
       deployments: [
         {
-          name: '$DEPLOYMENT_NAME',
+          name: 'azion-jwt-test',
           current: true,
           active: true,
           strategy: {
             type: 'default',
             attributes: {
-              application: '$APPLICATION_NAME'
+              application: 'azion-jwt-test'
             }
           }
         }
