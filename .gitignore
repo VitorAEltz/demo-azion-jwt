@@ -1,0 +1,6 @@
+node_modules
+.edge
+.vulcan#Paths added by Azion CLI
+.edge/
+.vulcan
+.open-next

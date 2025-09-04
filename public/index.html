@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Authentication Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>JWT Demo</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <button id="auth-btn" class="auth-btn">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Secure JWT Authentication</h1>
+                <p>Experience modern authentication with JSON Web Tokens. Sign in to access your personalized dashboard and explore protected features.</p>
+                <div class="hero-buttons">
+                    <button id="signin-btn" class="btn btn-primary">Sign In</button>
+                    <button id="signup-btn" class="btn btn-secondary">Sign Up</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="security-icon">🔐</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Secure Authentication</h3>
+                    <p>Industry-standard JWT tokens with HS256 encryption for maximum security.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast & Lightweight</h3>
+                    <p>Built on Azion Edge Functions for lightning-fast response times worldwide.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Easy Integration</h3>
+                    <p>Simple API endpoints that can be integrated into any application.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About This Demo</h2>
+            <p>This demonstration showcases a complete JWT authentication flow built with TypeScript and deployed on Azion Edge Functions. The system includes secure token generation, validation, and protected route access.</p>
+        </div>
+    </section>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button id="signin-tab" class="tab-btn active">Sign In</button>
+                    <button id="signup-tab" class="tab-btn">Sign Up</button>
+                </div>
+                
+                <!-- Sign In Form -->
+                <form id="signin-form" class="auth-form active">
+                    <h3>Welcome Back</h3>
+                    <div class="form-group">
+                        <label for="signin-email">Email</label>
+                        <input type="email" id="signin-email" placeholder="user1@test.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password">Password</label>
+                        <input type="password" id="signin-password" placeholder="My_Pass*" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Sign In</button>
+                    <div id="signin-error" class="error-message"></div>
+                </form>
+
+                <!-- Sign Up Form -->
+                <form id="signup-form" class="auth-form">
+                    <h3>Create Account</h3>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Sign Up</button>
+                    <div id="signup-error" class="error-message"></div>
+                    <div class="info-message">
+                        <p><strong>Demo Note:</strong> This demo only accepts the predefined credentials: user1@test.com / My_Pass*</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard/Profile Section (Hidden by default) -->
+    <section id="dashboard" class="dashboard hidden">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h2>Welcome to Your Dashboard</h2>
+                <button id="logout-btn" class="btn btn-secondary">Logout</button>
+            </div>
+            
+            <div class="dashboard-content">
+                <div class="profile-card">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-info">
+                        <h3 id="user-email">user1@test.com</h3>
+                        <p id="user-role">Admin</p>
+                        <p class="token-status">Token Status: <span id="token-status">Active</span></p>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h4>Public Data</h4>
+                        <p>This data is accessible without authentication.</p>
+                        <button id="test-public" class="btn btn-outline">Test Public Route</button>
+                        <div id="public-result" class="result-box"></div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4>Protected Data</h4>
+                        <p>This data requires valid JWT authentication.</p>
+                        <button id="test-protected" class="btn btn-primary">Test Protected Route</button>
+                        <div id="protected-result" class="result-box"></div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h4>Token Information</h4>
+                        <p>View your current JWT token details.</p>
+                        <button id="show-token" class="btn btn-outline">Show Token Details</button>
+                        <div id="token-details" class="result-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
